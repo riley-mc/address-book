@@ -1,6 +1,4 @@
-
-
-// Business Logic for AddressBook
+// Business Logic for AddressBook ---------
 function AddressBook() {
   this.contacts = [];
   this.currentId = 0;
@@ -39,7 +37,7 @@ AddressBook.prototype.deleteContact = function(id) {
   return false;
 }
 
-// Business Logic for Contacts
+// Business Logic for Contacts ---------
 function Contact(firstName, lastName, phoneNumber) {
   this.firstName = firstName;
   this.lastName = lastName;
@@ -49,50 +47,3 @@ function Contact(firstName, lastName, phoneNumber) {
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
-
-let addressBook = new AddressBook();
-
-$(document).ready(function() {
-  $("#contactInfo").submit(function(e) {
-    e.preventDefault();
-    
-    
-    let firstName = $("input#firstName").val();
-    let lastName = $("input#lastName").val();
-    let phoneNumber = $("input#phoneNumber").val();
-    let contact1 = new Contact(firstName, lastName, phoneNumber);
-    addressBook.addContact(contact1)
-    console.log(addressBook);
-
-    // function displayContacts () {
-      $("#contactList").html("");
-      let htmlForContactInfo = "";
-      addressBook.contacts.forEach(function(contact) {
-        htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
-      });
-      $("#contactList").html(htmlForContactInfo);
-    // };
-
-    function removeContact(){
-      $("li").click(function() {
-        console.log(this.id);
-        addressBook.deleteContact(this.id);
-        let htmlForContactInfo = "";
-        addressBook.contacts.forEach(function(contact) {
-          htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
-        });
-        $("#contactList").html(htmlForContactInfo);
-      });
-      removeContact();
-    }
-    removeContact();
-
-  }); 
-
-});
-
-
-// 1. click the contact
-// 2. find that contact
-// 3. then delete that contact
-// addressBook.d
